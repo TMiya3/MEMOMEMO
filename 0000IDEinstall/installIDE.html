@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>最小サンプル</title>
-  </head>
-  <body>
-    こんにちは、HTML！
+	<head>
+		<meta charset="UTF-8">
+		<title>最小サンプル</title>
+	</head>
+	<body>
+		<h1>ArduinoIDEのインストール</h1>
+		<p>
+			<h2>ダウンロード</h2>
+			ダウンロードボタンを押す<br>
+			<img src="00.png" alt="ダウンロードページの画像" width = 600><br>
+			インストーラがダウンロードできるのでNextをおしてインストール
+		</p>
+		<p>
+			<h2>動作確認</h2>
+			起動してボードを選ぶ<br>
+			ESP32を使うのでESP32-Dev-Moduleを選択<br>
+			<img src="01.png" alt="ボード選択画像" width=600><br>
+			
+			オウム返しするコードを書く<br>
+			<img src="02.png" alt="サンプルコード" width=600><br>
+			書けたらチェックボタンを押してコンパイル<br>
+			
+			コンパイルが終わったらESP32をPCに、USBケーブルを使って接続<br>
+			COMポートを選択<br>
+			チェックマークを押して書き込み<br>
+			<br>
+			シリアルモニタを開く<br>
+			<img src="03.png" alt="シリアルモニタを開く画像" width=600><br>
+			aと入力してEnter<br>
+			aと表示されればOK<br>
+			<img src="04.png" alt="aが返ってきている画像" width=600><br>
+			aを送って、ESP32が受け取って、送り返してきたaを表示している<br>
+			Serial.write(c);を2つにすると2回返してくる<br>
+		</p>
   </body>
 </html>
