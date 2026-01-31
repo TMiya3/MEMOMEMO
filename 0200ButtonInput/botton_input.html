@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ボタン入力 MEMOMEMO</title>
+	</head>
+	<body>
+		<h1>ボタン入力</h1>
+			ボタン入力をesp32で受け取る<br>
+		<p>
+			<h2>ブレッドボード図</h2>
+			<img src="00.png" alt="ブレッドボード図" width = 600><br>
+		</p>
+		<h2>ソースコード</h2>
+		<pre>
+			<code>
+const int buttonPin = 15;
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP);
+  Serial.begin(115200);
+}
+
+void loop() {
+  int buttonValue = digitalRead(buttonPin);
+  Serial.println(buttonValue);
+  delay(1000);
+}
+			</code>
+		</pre>
+		<h2>解説</h2>
+		<p>
+			15番ピンでボタンの入力を受け取る<br>
+			入力なのでINPUT<br>
+			ボタンを押していないとき値が不定になるため、PULLUPでHIGHになるようにする<br>
+			digitalReadで入力を読み01で受け取る<br>
+			ボタンを押していたら1(HIGH)、離していたら0(LOW)<br>
+			その結果をシリアルで送信<br>
+		<p>
+		<p>
+			どこにもつながっていない入力は作ってはいけない<br>
+			そのためプルアップかプルダウンが必要<br>
+			ESP32の外部で抵抗をつないでやってもいいが内部でもできる<br>
+			習慣的にはPULLUPを使うらしい<br>
+			ESP32の場合、入力には3.3Vを入れ、5Vを入れてはいけない<br>
+			恐らく間違え防止として、PULLUPにして入力にはGNDをつなぐのだと思う<br>
+		</p>
+		<h2>その他</h2>
+		<p>
+			17ピンを使うとボタンを押しても常に1だった<br>
+			ピンによって動作が不安定だったりするらしい<br>
+		</p>
+  </body>
+</html>
