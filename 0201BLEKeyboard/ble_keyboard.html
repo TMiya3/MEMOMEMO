@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>BLEキーボード</title>
+	</head>
+	<body>
+		<h1>BLEキーボード</h1>
+		<p>
+			ESP32をBLEキーボードにする<br>
+			まずは1秒ごとにaを打ち込むキーボードにする
+		</p>
+		<p>
+			<h2>ライブラリインストール</h2>
+			ESP32をBLEキーボードにするライブラリを入れる<br>
+			参考:<a href="https://github.com/T-vK/ESP32-BLE-Keyboard">ライブラリのリポジトリ</a><br>
+			zipを<a href="https://github.com/T-vK/ESP32-BLE-Keyboard/releases/download/0.3.0/ESP32-BLE-Keyboard.zip">ここ</a>
+			からダウンロード<br>
+			インストール方法はリポジトリを見ると書いてある<br>
+			<img src="00.png" alt="インストール手順画像" width = 600><br>
+			zipライブラリを追加する<br>
+			<img src="01.png" alt="インストール手順画像" width = 600><br>
+			エクスプローラが開くのでダウンロードしたzipを選択<br>
+		</p>
+		<h2>ソースコード</h2>
+			<pre>
+			<code>
+#include <BleKeyboard.h>
+
+BleKeyboard bleKeyboard("ESP32 Keyboard");
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("Starting BLE work!");
+  bleKeyboard.begin();
+}
+
+void loop() {
+  if (bleKeyboard.isConnected()) {
+    bleKeyboard.print("a");
+  }
+  delay(1000);
+}
+			</code>
+		</pre>
+		<h2>接続</h2>
+		<p>
+			ESP32に書き込む<br>
+			通電するとbluetooth機器として見つけられるので接続する<br>
+			<img src="02.png" alt="キーボード接続画像" width=600><br>
+			接続したとたんaが入力され始めるので注意<br>
+		</p>
+		<h2>出力</h2>
+		<img src="03.png" alt="出力画像" width=600><br>
+  </body>
+</html>
