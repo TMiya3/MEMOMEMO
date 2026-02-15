@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>BLEキーボード</title>
+	</head>
+	<body>
+		<h1>BLEキーボードとボタンの合体</h1>
+		26/02/15作成<br>
+		<p>
+			<h2>合体させる</h2>
+			<a href="../0200ButtonInput/button_input.html">以前</a>
+			にボタンの入力をとれるようになったので、ボタンを押したときにaを入力する<br>
+			配線は以前を参照<br>
+		</p>
+		<h2>ソースコード</h2>
+		<pre>
+			<code>
+#include &lt;BleKeyboard.h>
+
+BleKeyboard bleKeyboard("ESP32 Keyboard");
+const int buttonPin = 15;
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP);
+  Serial.begin(115200);
+  Serial.println("Starting BLE work!");
+  bleKeyboard.begin();
+}
+
+void loop() {
+  if (bleKeyboard.isConnected()) {
+    int buttonValue = digitalRead(buttonPin);
+    if(buttonValue == LOW){
+      bleKeyboard.print("a");
+    }
+  }
+  delay(10);
+}
+			</code>
+		</pre>
+		<p>
+			<h2>解説</h2>
+			ボタンの入力をbuttonValueで受け取れるのでそれを使う<br>
+			押すとLOWになるので、その時にaを入力する<br>
+			delayが長いとその間に押したものは無視されるので短くする<br>
+		</p>
+		<p>
+			<h2>結果</h2>
+			<img src="00.png" alt="結果画像" width = 600><br>
+			押している間ずっとaが入力される<br>
+			その対応は次<br>
+		</p>
+		<div id="footer"></div>
+		<script src="../footer.js"></script>
+  </body>
+</html>
