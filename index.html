@@ -5,14 +5,27 @@
     <title>MEMOMEMO</title>
   </head>
   <body>
-    <a href="0000IDEinstall/installIDE.html">ArduinoIDEのインストール</a><br>
+    <!--<a href="0000IDEinstall/installIDE.html">ArduinoIDEのインストール</a><br>
     <a href="0001Fritzing_install/installFritzing.html">Fritzingのインストール</a><br>
     <a href="0100Tester/tester.html">テスター</a><br>
     <a href="0101BreadBord/breadbord.html">ブレッドボード</a><br>
     <a href="0102TactSwitch/tact_switch.html">タクトスイッチ</a><br>
     <a href="0200ButtonInput/button_input.html">ボタン入力</a><br>
     <a href="0201BLEKeyboard/ble_keyboard.html">BLEキーボード</a><br>
-    <a href="0202BLEKeyboardButton/ble_keyboard_button.html">BLEキーボードとボタンの合体</a><br>
-
+    <a href="0202BLEKeyboardButton/ble_keyboard_button.html">BLEキーボードとボタンの合体</a><br>-->
+    
+    <ul id="page-list"></ul>
+    <script>
+    fetch("pages.json")
+      .then(res => res.json())
+      .then(pages => {
+        const ul = document.getElementById("page-list");
+        pages.forEach(p => {
+          const li = document.createElement("li");
+          li.innerHTML = `<a href="${p.url}">${p.title}</a>`;
+          ul.appendChild(li);
+        });
+      });
+    </script>
   </body>
 </html>
