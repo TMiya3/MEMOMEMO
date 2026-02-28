@@ -7,7 +7,7 @@ ROOT = "."
 
 # 除外したいファイルやフォルダ
 EXCLUDE_FILES = {"index.html", "footer.html"}
-EXCLUDE_DIRS = {".git", "__pycache__","9900Sample"}
+EXCLUDE_DIRS = {".git", "__pycache__","00_Sample"}
 
 # <h1> 抽出用の正規表現
 H1_RE = re.compile(r"<h1[^>]*>(.*?)</h1>", re.IGNORECASE | re.DOTALL)

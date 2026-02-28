@@ -1,34 +1,34 @@
 [
   {
     "title": "ArduinoIDEのインストール",
-    "url": "0000IDEinstall/installIDE.html"
+    "url": "00_install/00_IDEinstall/installIDE.html"
   },
   {
     "title": "Fritzingのインストール",
-    "url": "0001Fritzing_install/installFritzing.html"
+    "url": "00_install/01_Fritzing_install/installFritzing.html"
   },
   {
     "title": "テスタ",
-    "url": "0100Tester/tester.html"
+    "url": "01_Tools/00_Tester/tester.html"
   },
   {
     "title": "ブレッドボード",
-    "url": "0101BreadBord/breadbord.html"
+    "url": "01_Tools/01_BreadBord/breadbord.html"
   },
   {
     "title": "タクトスイッチ",
-    "url": "0102TactSwitch/tact_switch.html"
+    "url": "01_Tools/02_TactSwitch/tact_switch.html"
   },
   {
     "title": "ボタン入力",
-    "url": "0200ButtonInput/button_input.html"
+    "url": "02_BLEKeyBoard/00_ButtonInput/button_input.html"
   },
   {
     "title": "BLEキーボード",
-    "url": "0201BLEKeyboard/ble_keyboard.html"
+    "url": "02_BLEKeyBoard/01_BLEKeyboard/ble_keyboard.html"
   },
   {
     "title": "BLEキーボードとボタンの合体",
-    "url": "0202BLEKeyboardButton/ble_keyboard_button.html"
+    "url": "02_BLEKeyBoard/02_BLEKeyboardButton/ble_keyboard_button.html"
   }
 ]
