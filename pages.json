@@ -30,5 +30,9 @@
   {
     "title": "BLEキーボードとボタンの合体",
     "url": "02_BLEKeyBoard/02_BLEKeyboardButton/ble_keyboard_button.html"
+  },
+  {
+    "title": "目次の自動更新",
+    "url": "03_Web/00_AutoIndex/auto_index.html"
   }
 ]
