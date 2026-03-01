@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>目次の自動更新</title>
+	</head>
+	<body>
+		<h1>目次の自動更新</h1>
+		26/02/28作成<br>
+		<p>
+			<h2>経緯</h2>
+			ページを増やすとそれに合わせて目次の更新が必要<br>
+			いちいちリンクを張るのはメンドウ<br>
+			各フォルダには1つしかHTMLを入れないので、自動でそれにリンクを張ってほしい<br>
+		</p>
+		<p>
+			<h2>jsonファイルを使う</h2>
+			JavaScriptにフォルダを探索する機能はないらしいのでファイルを使う<br>
+			jsonファイルにパスと表示テキストを書く<br>
+			そのファイルを読み込むことでリンクを自動ではる<br>
+		</p>
+		<p>
+			<h2>jsonファイルを自動生成</h2>
+			jsonファイルを手で作るのはメンドウ<br>
+			pythonでフォルダを探索してjsonに書き込む<br>
+			windowsならダブルクリックでpythonが実行される<br>
+		</p>
+		<p>
+			<h2>index.html</h2>
+			以下のコードをbodyに入れる
+			<pre>
+    &lt;ul id="page-list">&lt;/ul>
+    &lt;script>
+    fetch("pages.json")
+      .then(res => res.json())
+      .then(pages => {
+        const ul = document.getElementById("page-list");
+        pages.forEach(p => {
+          const li = document.createElement("li");
+          li.innerHTML = `&lt;a href="${p.url}">${p.title}&lt;/a>`;
+          ul.appendChild(li);
+        });
+      });
+    &lt;/script>
+			</pre>
+		</p>
+		<p>
+			<h2>json作成コード</h2>
+			<pre>
+import os
+import json
+import re
+
+# スキャン開始ディレクトリ（index.html と同じ階層）
+ROOT = "."
+
+# 除外したいファイルやフォルダ
+EXCLUDE_FILES = {"index.html", "footer.html"}
+EXCLUDE_DIRS = {".git", "__pycache__","00_Sample"}
+
+# &lt;h1> 抽出用の正規表現
+H1_RE = re.compile(r"&lt;h1[^>]*>(.*?)&lt;/h1>", re.IGNORECASE | re.DOTALL)
+
+def extract_h1(filepath):
+    """HTML ファイルから &lt;h1> を抽出。なければファイル名を返す。"""
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            html = f.read()
+        m = H1_RE.search(html)
+        if m:
+            return m.group(1).strip()
+    except:
+        pass
+    # h1 が無い場合はファイル名（拡張子なし）
+    return os.path.splitext(os.path.basename(filepath))[0]
+
+
+pages = []
+
+for current_dir, dirs, files in os.walk(ROOT):
+    # 除外フォルダをスキップ
+    dirs[:] = [d for d in dirs if d not in EXCLUDE_DIRS]
+
+    for filename in files:
+        if filename.endswith(".html") and filename not in EXCLUDE_FILES:
+            # 相対パス
+            rel_dir = os.path.relpath(current_dir, ROOT)
+            rel_path = os.path.join(rel_dir, filename) if rel_dir != "." else filename
+            rel_path = rel_path.replace("\\", "/")  # Windows対策
+
+            # h1 タイトル抽出
+            full_path = os.path.join(current_dir, filename)
+            title = extract_h1(full_path)
+
+            pages.append({
+                "title": title,
+                "url": rel_path
+            })
+
+# ★ URL でソート
+pages.sort(key=lambda x: x["url"])
+
+with open("pages.json", "w", encoding="utf-8") as f:
+    json.dump(pages, f, ensure_ascii=False, indent=2)
+
+print("pages.json を生成しました。")
+			</pre>
+		</p>
+		<div id="footer"></div>
+		<script src="../footer.js"></script>
+  </body>
+</html>
