@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ボタンの押下</title>
+	</head>
+	<body>
+		<h1>ボタンの押下を検出</h1>
+		26/03/08作成<br>
+		<p>
+			<h2>フラグ追加</h2>
+			押したかのフラグを持って置き、フラグがONでないときにボタンが押されたら押下判定<br>
+		</p>
+		<h2>ソースコード</h2>
+		<pre>
+			<code>
+#include &lt;BleKeyboard.h>
+
+BleKeyboard bleKeyboard("ESP32 Keyboard");
+const int buttonPin = 15;
+bool pushed =false;
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP);
+  Serial.begin(115200);
+  Serial.println("Starting BLE work!");
+  bleKeyboard.begin();
+}
+
+void loop() {
+  if (bleKeyboard.isConnected()) {
+    int buttonValue = digitalRead(buttonPin);
+    if(buttonValue == LOW){
+      if(pushed ==false){
+        bleKeyboard.print("a");
+        pushed = true;
+      }
+    }
+    else{
+      pushed = false;
+    }
+  }
+  delay(10);
+}
+			</code>
+		</pre>
+		<p>
+			<h2>解説</h2>
+			pushedで押したかどうかを覚えておく<br>
+			離したときにリセットを忘れない<br>
+		</p>
+		<p>
+			<h2>結果</h2>
+			<img src="00.png" alt="結果画像" width = 600><br>
+		</p>
+		<div id="footer"></div>
+		<script src="../footer.js"></script>
+  </body>
+</html>
