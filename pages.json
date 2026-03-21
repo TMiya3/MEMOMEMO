@@ -44,6 +44,10 @@
     "url": "02_BLEKeyBoard/05_BLEKeyboardUp/ble_keyboard_up.html"
   },
   {
+    "title": "時間取得",
+    "url": "02_BLEKeyBoard/06_BLEKeyboardTime/ble_keyboard_time.html"
+  },
+  {
     "title": "目次の自動更新",
     "url": "03_Web/00_AutoIndex/auto_index.html"
   }

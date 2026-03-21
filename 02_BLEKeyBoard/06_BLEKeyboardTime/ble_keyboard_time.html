@@ -2,12 +2,16 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>ボタンの解放</title>
+		<title>時間取得　MemoMemo</title>
 	</head>
 	<body>
-		<h1>ボタンの解放検出</h1>
+		<h1>時間取得</h1>
 		26/03/21作成<br>
-		ボタンを離したのを検出する<br>
+		
+		ボタンを押したり放したりした順番を得るために時間を取得する<br>
+		順番がわかればいいので現在時刻ではなく起動してからの経過時間<br>
+		
+		<h2>ソースコード</h2>
 		<pre>
 			<code>
 #include &lt;BleKeyboard.h>
@@ -32,12 +36,14 @@ void loop() {
     if(button0Value == LOW){
       if(pushed0 ==false){
         bleKeyboard.print("a");
+        bleKeyboard.println(millis());
         pushed0 = true;
       }
     }
     else{
       if(pushed0){
         bleKeyboard.print("c");
+        bleKeyboard.println(millis());
       }
       pushed0 = false;
     }
@@ -46,12 +52,14 @@ void loop() {
     if(button1Value == LOW){
       if(pushed1 ==false){
         bleKeyboard.print("b");
+        bleKeyboard.println(millis());
         pushed1 = true;
       }
     }
     else{
       if(pushed1){
         bleKeyboard.print("d");
+        bleKeyboard.println(millis());
       }
       pushed1 = false;
     }
@@ -62,26 +70,12 @@ void loop() {
 		</pre>
 		<p>
 			<h2>解説</h2>
-			押したフラグのリセットのタイミングが離されているとき<br>
-			離されているときにフラグが立っていたら、それは離されてはじめて<br>
-			なのでその時が、離された瞬間<br>
+			millis()で起動からの時間をミリ秒単位で取得できる<br>
 		</p>
 		<p>
 			<h2>結果</h2>
 			<img src="00.png" alt="結果画像" width = 600><br>
-			2つのキーを押して放すと
-			<ul>
-				<li>abcd</li>
-				<li>abdc</li>
-				<li>bacd</li>
-				<li>badc</li>
-			</ul>
-			の4パターンできる<br>
-			これらにキーを割り当てると2つのボタンで4種類の入力ができそう<br>
-			それらはまた次回<br>
 		</p>
-		
-		
 		<a href="https://tmiya3.github.io/MEMOMEMO/">リンク</a>
 		<div id="footer"></div>
 		<script src="../footer.js"></script>
