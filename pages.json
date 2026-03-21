@@ -36,6 +36,14 @@
     "url": "02_BLEKeyBoard/03_BLEKeyboardButtonDown/ble_keyboard_button_down.html"
   },
   {
+    "title": "複数のボタン",
+    "url": "02_BLEKeyBoard/04_BLEKeyboardTwoButton/ble_keyboard_two_button.html"
+  },
+  {
+    "title": "ボタンの解放検出",
+    "url": "02_BLEKeyBoard/05_BLEKeyboardUp/ble_keyboard_up.html"
+  },
+  {
     "title": "目次の自動更新",
     "url": "03_Web/00_AutoIndex/auto_index.html"
   }

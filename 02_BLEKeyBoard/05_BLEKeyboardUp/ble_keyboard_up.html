@@ -2,19 +2,12 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>複数のボタン</title>
+		<title>ボタンの解放</title>
 	</head>
 	<body>
-		<h1>複数のボタン</h1>
+		<h1>ボタンの解放検出</h1>
 		26/03/21作成<br>
-		<p>
-			ボタン入力を増やす
-		</p>
-		<p>
-			<h2>ブレッドボード図</h2>
-			<img src="00.png" alt="ブレッドボード図" width = 600><br>
-		</p>
-		<h2>ソースコード</h2>
+		ボタンを離したのを検出する<br>
 		<pre>
 			<code>
 #include &lt;BleKeyboard.h>
@@ -43,6 +36,9 @@ void loop() {
       }
     }
     else{
+      if(pushed0){
+        bleKeyboard.print("c");
+      }
       pushed0 = false;
     }
 
@@ -54,6 +50,9 @@ void loop() {
       }
     }
     else{
+      if(pushed1){
+        bleKeyboard.print("d");
+      }
       pushed1 = false;
     }
   }
@@ -63,13 +62,16 @@ void loop() {
 		</pre>
 		<p>
 			<h2>解説</h2>
-			もう1つ別のピンを選ぶ<br>
-			そのピンについて同じように書く<br>
+			押したフラグのリセットのタイミングが離されているとき<br>
+			離されているときにフラグが立っていたら、それは離されてはじめて<br>
+			なのでその時が、離された瞬間<br>
 		</p>
 		<p>
 			<h2>結果</h2>
-			<img src="01.png" alt="結果画像" width = 600><br>
-		<p>
+			<img src="00.png" alt="結果画像" width = 600><br>
+		</p>
+		
+		
 		<a href="https://tmiya3.github.io/MEMOMEMO/">リンク</a>
 		<div id="footer"></div>
 		<script src="../footer.js"></script>
