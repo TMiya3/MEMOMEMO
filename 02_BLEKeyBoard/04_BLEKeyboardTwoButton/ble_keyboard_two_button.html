@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>複数のボタン</title>
+	</head>
+	<body>
+		<h1>複数のボタン</h1>
+		26/03/15作成<br>
+		<p>
+			ボタン入力を増やす
+		</p>
+		<p>
+			<h2>ブレッドボード図</h2>
+			<img src="00.png" alt="ブレッドボード図" width = 600><br>
+		</p>
+		<h2>ソースコード</h2>
+		<pre>
+			<code>
+#include &lt;BleKeyboard.h>
+
+BleKeyboard bleKeyboard("ESP32 Keyboard");
+const int button0Pin = 15;
+const int button1Pin = 2;
+bool pushed0 = false;
+bool pushed1 = false;
+void setup() {
+  pinMode(button0Pin, INPUT_PULLUP);
+  pinMode(button1Pin, INPUT_PULLUP);
+
+  Serial.begin(115200);
+  Serial.println("Starting BLE work!");
+  bleKeyboard.begin();
+}
+
+void loop() {
+  if (bleKeyboard.isConnected()) {
+    int button0Value = digitalRead(button0Pin);
+    if(button0Value == LOW){
+      if(pushed0 ==false){
+        bleKeyboard.print("a");
+        pushed0 = true;
+      }
+    }
+    else{
+      pushed0 = false;
+    }
+
+    int button1Value = digitalRead(button1Pin);
+    if(button1Value == LOW){
+      if(pushed1 ==false){
+        bleKeyboard.print("b");
+        pushed1 = true;
+      }
+    }
+    else{
+      pushed1 = false;
+    }
+  }
+  delay(10);
+}
+			</code>
+		</pre>
+		<p>
+			<h2>解説</h2>
+			もう1つ別のピンを選ぶ<br>
+			そのピンについて同じように書く<br>
+		</p>
+		<p>
+			<h2>結果</h2>
+			<img src="01.png" alt="結果画像" width = 600><br>
+		<p>
+		<a href="https://tmiya3.github.io/MEMOMEMO/">リンク</a>
+		<div id="footer"></div>
+		<script src="../footer.js"></script>
+  </body>
+</html>
