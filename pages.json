@@ -48,6 +48,10 @@
     "url": "02_BLEKeyBoard/06_BLEKeyboardTime/ble_keyboard_time.html"
   },
   {
+    "title": "2ボタン解放取得",
+    "url": "02_BLEKeyBoard/07_BLEKeyboardTwoUp/ble_keyboard_two_up.html"
+  },
+  {
     "title": "目次の自動更新",
     "url": "03_Web/00_AutoIndex/auto_index.html"
   }
