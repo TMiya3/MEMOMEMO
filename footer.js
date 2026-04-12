@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	console.log(prefix)
 	// footer.html を読み込む
-	fetch(prefix+"footer.html")
+	fetch("../../footer.html")
 		.then(res => res.text())
 		.then(html => {
 		document.getElementById("footer").innerHTML = html;
