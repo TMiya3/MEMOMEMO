@@ -56,6 +56,14 @@
     "url": "02_BLEKeyBoard/08_BLEkeyboardTwoUpTime/ble_keyboard_two_up_time.html"
   },
   {
+    "title": "押したり放した時間から分類",
+    "url": "02_BLEKeyBoard/09_BLEkeyboard4Key/ble_keyboard_4key.html"
+  },
+  {
+    "title": "ボタンを3つに",
+    "url": "02_BLEKeyBoard/10_BLEkeyboard3Button/ble_keyboard_3button.html"
+  },
+  {
     "title": "目次の自動更新",
     "url": "03_Web/00_AutoIndex/auto_index.html"
   }
